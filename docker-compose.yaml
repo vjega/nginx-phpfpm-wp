@@ -1,0 +1,39 @@
+version: '3.5'
+networks:
+  opentxt:
+    driver: default
+    name: wordpress
+    external: true
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    tty: false
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'wp-user'
+      MYSQL_PASS: 'password'
+      MYSQL_DATABASE: 'wordpress'
+    restart: unless-stopped
+    networks:
+      opentxt:
+        aliases:
+          - mysql
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  wp_app:
+    container_name: opentxt_wp
+    image: opentxt:v1
+    ports:
+      - "8000:80"
+    tty: true
+    networks: 
+      - opentxt
+    volumes:
+      - ./uploads:/uploads
+    links:
+      - "mysql"
