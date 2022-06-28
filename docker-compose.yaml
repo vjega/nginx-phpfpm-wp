@@ -11,7 +11,7 @@ services:
     image: mysql:latest
     ports:
       - "3306:3306"
-    tty: false
+    tty: true
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_USER: 'wp-user'
@@ -27,7 +27,7 @@ services:
 
   wp_app:
     container_name: opentxt_wp
-    image: opentxt:v1
+    image: opentxt:Ubuntu-v1
     ports:
       - "8000:80"
     tty: true

@@ -1,1 +1,1 @@
-docker build -t opentxt:v1 .
+docker build -t opentxt:Ubuntu-v1 .

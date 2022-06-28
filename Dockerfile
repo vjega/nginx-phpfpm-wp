@@ -1,5 +1,5 @@
 # Start from base debian image
-FROM debian:bullseye
+FROM ubuntu:focal
 
 # Let us set some env variable
 ENV PHP_VER=7.4
